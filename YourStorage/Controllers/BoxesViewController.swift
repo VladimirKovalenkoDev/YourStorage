@@ -16,6 +16,7 @@ class BoxesViewController: SwipeTableViewController {
     let context  = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadData()
     }
 
     @IBAction func addBox(_ sender: UIBarButtonItem) {

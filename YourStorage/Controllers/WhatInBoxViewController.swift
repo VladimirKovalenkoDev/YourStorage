@@ -7,18 +7,23 @@
 //
 
 import UIKit
-
+import CoreData
 class WhatInBoxViewController: SwipeTableViewController {
     
     var selectedBox : Boxes? {
         didSet{
-         //   loadData()
+           loadData()
            
         }
     }
+    let context  = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    var things = [InBox]()
     override func viewDidLoad() {
         super.viewDidLoad()
 
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        title = selectedBox!.name
     }
 
     // MARK: - Table view data source
@@ -33,31 +38,38 @@ class WhatInBoxViewController: SwipeTableViewController {
         return 0
     }
 
-//   func saveData () {
-//            do {
-//               try  context.save()
-//            } catch {
-//            print("error saving context: \(error)")
-//            }
-//           
-//            self.tableView.reloadData()
-//       }
-//       
-//       func loadData(with request:NSFetchRequest<Boxes> = Boxes.fetchRequest()) {
-//           do {
-//              boxes =  try context.fetch(request)
-//           } catch  {
-//               print("error fetching data from context:\(error)")
-//               }
-//           tableView.reloadData()
-//       }
-//        // MARK: -  Delete data from swipe
-//   override func updateModel(at indexPath: IndexPath) {
-//       
-//       let box = self.boxes[indexPath.row]
-//       self.context.delete(box)
-//       self.boxes.remove(at: indexPath.row)
-//       }
-//   
+   func saveData () {
+            do {
+               try  context.save()
+            } catch {
+            print("error saving context: \(error)")
+            }
+           
+            self.tableView.reloadData()
+       }
+       
+        func loadData(with request:NSFetchRequest<InBox> = InBox.fetchRequest(), predicate: NSPredicate? = nil) {
+              let boxPredicate = NSPredicate(format: "parentCategory.name MATCHES %@", selectedBox!.name!)
+              if let additionalPredicate = predicate {
+                  request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [boxPredicate,additionalPredicate])
+              } else {
+                  request.predicate = boxPredicate
+              }
+             
+              do {
+                 things =  try context.fetch(request)
+              } catch  {
+                  print("error fetching data from context:\(error)")
+              }
+              tableView.reloadData()
+          }
+        // MARK: -  Delete data from swipe
+   override func updateModel(at indexPath: IndexPath) {
+       
+       let thing = self.things[indexPath.row]
+       self.context.delete(thing)
+       self.things.remove(at: indexPath.row)
+       }
+   
 
 }

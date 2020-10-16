@@ -2,8 +2,14 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19F96" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Boxes" representedClassName="Boxes" syncable="YES" codeGenerationType="class">
         <attribute name="name" attributeType="String"/>
+        <relationship name="inbox" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="InBox" inverseName="parentCategory" inverseEntity="InBox"/>
+    </entity>
+    <entity name="InBox" representedClassName="InBox" syncable="YES" codeGenerationType="class">
+        <attribute name="gods" attributeType="String"/>
+        <relationship name="parentCategory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Boxes" inverseName="inbox" inverseEntity="Boxes"/>
     </entity>
     <elements>
-        <element name="Boxes" positionX="-63" positionY="-18" width="128" height="58"/>
+        <element name="Boxes" positionX="-4375.90625" positionY="-999.0859375" width="128" height="73"/>
+        <element name="InBox" positionX="-4132.6484375" positionY="-874.7109375" width="128" height="73"/>
     </elements>
 </model>

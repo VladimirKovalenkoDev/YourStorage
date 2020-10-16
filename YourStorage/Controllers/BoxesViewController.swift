@@ -21,7 +21,10 @@ class BoxesViewController: SwipeTableViewController {
     @IBAction func addBox(_ sender: UIBarButtonItem) {
                let alert = UIAlertController(title: "add new box", message: "", preferredStyle: .alert)
                let action = UIAlertAction(title: "Add Category", style: .default) { ( action) in
-                   
+                let newBox = Boxes(context: self.context)
+                newBox.name = self.textField.text!
+                self.boxes.append(newBox)
+                self.saveData()
                }
                let cancel = UIAlertAction(title: "Cancel", style: .cancel)
                alert.addTextField { (field) in
@@ -38,9 +41,19 @@ class BoxesViewController: SwipeTableViewController {
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
+        let box = boxes[indexPath.row]
+        cell.textLabel?.text = box.name
            return cell
     }
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == C.boxToWhatIsSegue {
+            let destinationVC = segue.destination as! WhatInBoxViewController
+            if let indexPath = tableView.indexPathForSelectedRow {
+                destinationVC.selectedBox = boxes[indexPath.row]
+            }
+        }
+    }
+   // MARK: - Coredata Manipulations
     func saveData () {
              do {
                 try  context.save()

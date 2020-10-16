@@ -9,27 +9,27 @@
 import UIKit
 import CoreData
 
-class BoxesViewController: UITableViewController {
+class BoxesViewController: SwipeTableViewController {
     
     var boxes = [Boxes]()
-    
+    var textField = UITextField()
+    let context  = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     override func viewDidLoad() {
         super.viewDidLoad()
     }
 
     @IBAction func addBox(_ sender: UIBarButtonItem) {
-        var textField = UITextField()
-        
-               let alert = UIAlertController(title: "add new category", message: "", preferredStyle: .alert)
+               let alert = UIAlertController(title: "add new box", message: "", preferredStyle: .alert)
                let action = UIAlertAction(title: "Add Category", style: .default) { ( action) in
                    
                }
-               alert.addTextField { (alertTextField) in
-                   alertTextField.placeholder = "Crete new item"
-                   
-                   textField = alertTextField
+               let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+               alert.addTextField { (field) in
+                   field.placeholder = "Add box"
+                   self.textField = field
                }
                alert.addAction(action)
+               alert.addAction(cancel)
                present(alert, animated: true, completion: nil)
     }
     // MARK: - TableView Manipulations
@@ -38,10 +38,35 @@ class BoxesViewController: UITableViewController {
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
-          
-        
            return cell
     }
     
+    func saveData () {
+             do {
+                try  context.save()
+             } catch {
+             print("error saving context: \(error)")
+             }
+            
+             self.tableView.reloadData()
+        }
+        
+        func loadData(with request:NSFetchRequest<Boxes> = Boxes.fetchRequest()) {
+            do {
+               boxes =  try context.fetch(request)
+            } catch  {
+                print("error fetching data from context:\(error)")
+                }
+            tableView.reloadData()
+        }
+         // MARK: -  Delete data from swipe
+    override func updateModel(at indexPath: IndexPath) {
+        
+        let box = self.boxes[indexPath.row]
+        self.context.delete(box)
+        self.boxes.remove(at: indexPath.row)
+        }
+    
 }
+
 

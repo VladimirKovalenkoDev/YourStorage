@@ -3,12 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		98EEA5EF080814FA78EFB45A /* Pods_YourStorage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF312E74CFCC5DB475909343 /* Pods_YourStorage.framework */; };
 		DD239A5E2539D5B000747BAF /* WhatInBoxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD239A5D2539D5B000747BAF /* WhatInBoxViewController.swift */; };
 		DD239A602539D97E00747BAF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD239A5F2539D97E00747BAF /* Constants.swift */; };
+		DD239A622539DD5700747BAF /* SwipeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD239A612539DD5600747BAF /* SwipeTableViewController.swift */; };
 		DD5A01222539C9E6004D86C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5A01212539C9E6004D86C8 /* AppDelegate.swift */; };
 		DD5A01242539C9E6004D86C8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5A01232539C9E6004D86C8 /* SceneDelegate.swift */; };
 		DD5A01262539C9E6004D86C8 /* BoxesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5A01252539C9E6004D86C8 /* BoxesViewController.swift */; };
@@ -19,8 +21,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0CD4051988A623D5760EC1E1 /* Pods-YourStorage.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YourStorage.release.xcconfig"; path = "Target Support Files/Pods-YourStorage/Pods-YourStorage.release.xcconfig"; sourceTree = "<group>"; };
+		AF312E74CFCC5DB475909343 /* Pods_YourStorage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YourStorage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD239A5D2539D5B000747BAF /* WhatInBoxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatInBoxViewController.swift; sourceTree = "<group>"; };
 		DD239A5F2539D97E00747BAF /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		DD239A612539DD5600747BAF /* SwipeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeTableViewController.swift; sourceTree = "<group>"; };
 		DD5A011E2539C9E6004D86C8 /* YourStorage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YourStorage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD5A01212539C9E6004D86C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DD5A01232539C9E6004D86C8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -30,6 +35,7 @@
 		DD5A012D2539C9EC004D86C8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DD5A01302539C9EC004D86C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DD5A01322539C9EC004D86C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ECCE1CBBA903C51DB445B71A /* Pods-YourStorage.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YourStorage.debug.xcconfig"; path = "Target Support Files/Pods-YourStorage/Pods-YourStorage.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,17 +43,44 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				98EEA5EF080814FA78EFB45A /* Pods_YourStorage.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3CA9130B9819487FE1016F14 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AF312E74CFCC5DB475909343 /* Pods_YourStorage.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		988676F3DEFB1A63C4FC82DD /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				ECCE1CBBA903C51DB445B71A /* Pods-YourStorage.debug.xcconfig */,
+				0CD4051988A623D5760EC1E1 /* Pods-YourStorage.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		DD239A652539E1CA00747BAF /* Core */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
 		DD5A01152539C9E6004D86C8 = {
 			isa = PBXGroup;
 			children = (
 				DD5A01202539C9E6004D86C8 /* YourStorage */,
 				DD5A011F2539C9E6004D86C8 /* Products */,
+				988676F3DEFB1A63C4FC82DD /* Pods */,
+				3CA9130B9819487FE1016F14 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -79,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				DD5A01252539C9E6004D86C8 /* BoxesViewController.swift */,
+				DD239A612539DD5600747BAF /* SwipeTableViewController.swift */,
 				DD239A5D2539D5B000747BAF /* WhatInBoxViewController.swift */,
 			);
 			path = Controllers;
@@ -95,6 +129,7 @@
 		DD5A013B2539CA96004D86C8 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				DD239A652539E1CA00747BAF /* Core */,
 				DD5A012A2539C9E6004D86C8 /* YourStorage.xcdatamodeld */,
 			);
 			path = Models;
@@ -107,9 +142,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DD5A01352539C9EC004D86C8 /* Build configuration list for PBXNativeTarget "YourStorage" */;
 			buildPhases = (
+				A6182EB12E02C012B75B14F4 /* [CP] Check Pods Manifest.lock */,
 				DD5A011A2539C9E6004D86C8 /* Sources */,
 				DD5A011B2539C9E6004D86C8 /* Frameworks */,
 				DD5A011C2539C9E6004D86C8 /* Resources */,
+				8463ED9E2B9BC28B02EF5C13 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -166,6 +203,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		8463ED9E2B9BC28B02EF5C13 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-YourStorage/Pods-YourStorage-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-YourStorage/Pods-YourStorage-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-YourStorage/Pods-YourStorage-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A6182EB12E02C012B75B14F4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-YourStorage-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		DD5A011A2539C9E6004D86C8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -174,6 +253,7 @@
 				DD5A012C2539C9E6004D86C8 /* YourStorage.xcdatamodeld in Sources */,
 				DD5A01262539C9E6004D86C8 /* BoxesViewController.swift in Sources */,
 				DD5A01222539C9E6004D86C8 /* AppDelegate.swift in Sources */,
+				DD239A622539DD5700747BAF /* SwipeTableViewController.swift in Sources */,
 				DD5A01242539C9E6004D86C8 /* SceneDelegate.swift in Sources */,
 				DD239A5E2539D5B000747BAF /* WhatInBoxViewController.swift in Sources */,
 				DD239A602539D97E00747BAF /* Constants.swift in Sources */,
@@ -318,6 +398,7 @@
 		};
 		DD5A01362539C9EC004D86C8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ECCE1CBBA903C51DB445B71A /* Pods-YourStorage.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -336,6 +417,7 @@
 		};
 		DD5A01372539C9EC004D86C8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0CD4051988A623D5760EC1E1 /* Pods-YourStorage.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

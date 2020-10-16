@@ -9,5 +9,6 @@
 import Foundation
 
 struct C {
-    
+    static let boxToWhatIsSegue = "IntoTheBox"
+    static let cells = "Cells"
 }

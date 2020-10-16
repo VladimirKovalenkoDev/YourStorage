@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DD239A5E2539D5B000747BAF /* WhatInBoxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD239A5D2539D5B000747BAF /* WhatInBoxViewController.swift */; };
+		DD239A602539D97E00747BAF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD239A5F2539D97E00747BAF /* Constants.swift */; };
 		DD5A01222539C9E6004D86C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5A01212539C9E6004D86C8 /* AppDelegate.swift */; };
 		DD5A01242539C9E6004D86C8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5A01232539C9E6004D86C8 /* SceneDelegate.swift */; };
-		DD5A01262539C9E6004D86C8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5A01252539C9E6004D86C8 /* ViewController.swift */; };
+		DD5A01262539C9E6004D86C8 /* BoxesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5A01252539C9E6004D86C8 /* BoxesViewController.swift */; };
 		DD5A01292539C9E6004D86C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD5A01272539C9E6004D86C8 /* Main.storyboard */; };
 		DD5A012C2539C9E6004D86C8 /* YourStorage.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DD5A012A2539C9E6004D86C8 /* YourStorage.xcdatamodeld */; };
 		DD5A012E2539C9EC004D86C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD5A012D2539C9EC004D86C8 /* Assets.xcassets */; };
@@ -17,10 +19,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DD239A5D2539D5B000747BAF /* WhatInBoxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatInBoxViewController.swift; sourceTree = "<group>"; };
+		DD239A5F2539D97E00747BAF /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		DD5A011E2539C9E6004D86C8 /* YourStorage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YourStorage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD5A01212539C9E6004D86C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DD5A01232539C9E6004D86C8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		DD5A01252539C9E6004D86C8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		DD5A01252539C9E6004D86C8 /* BoxesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxesViewController.swift; sourceTree = "<group>"; };
 		DD5A01282539C9E6004D86C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DD5A012B2539C9E6004D86C8 /* YourStorage.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = YourStorage.xcdatamodel; sourceTree = "<group>"; };
 		DD5A012D2539C9EC004D86C8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -60,14 +64,40 @@
 			children = (
 				DD5A01212539C9E6004D86C8 /* AppDelegate.swift */,
 				DD5A01232539C9E6004D86C8 /* SceneDelegate.swift */,
-				DD5A01252539C9E6004D86C8 /* ViewController.swift */,
-				DD5A01272539C9E6004D86C8 /* Main.storyboard */,
+				DD239A5F2539D97E00747BAF /* Constants.swift */,
+				DD5A013B2539CA96004D86C8 /* Models */,
+				DD5A013A2539CA8A004D86C8 /* View */,
+				DD5A01392539CA7E004D86C8 /* Controllers */,
 				DD5A012D2539C9EC004D86C8 /* Assets.xcassets */,
 				DD5A012F2539C9EC004D86C8 /* LaunchScreen.storyboard */,
 				DD5A01322539C9EC004D86C8 /* Info.plist */,
-				DD5A012A2539C9E6004D86C8 /* YourStorage.xcdatamodeld */,
 			);
 			path = YourStorage;
+			sourceTree = "<group>";
+		};
+		DD5A01392539CA7E004D86C8 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				DD5A01252539C9E6004D86C8 /* BoxesViewController.swift */,
+				DD239A5D2539D5B000747BAF /* WhatInBoxViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		DD5A013A2539CA8A004D86C8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DD5A01272539C9E6004D86C8 /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DD5A013B2539CA96004D86C8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				DD5A012A2539C9E6004D86C8 /* YourStorage.xcdatamodeld */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -142,9 +172,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				DD5A012C2539C9E6004D86C8 /* YourStorage.xcdatamodeld in Sources */,
-				DD5A01262539C9E6004D86C8 /* ViewController.swift in Sources */,
+				DD5A01262539C9E6004D86C8 /* BoxesViewController.swift in Sources */,
 				DD5A01222539C9E6004D86C8 /* AppDelegate.swift in Sources */,
 				DD5A01242539C9E6004D86C8 /* SceneDelegate.swift in Sources */,
+				DD239A5E2539D5B000747BAF /* WhatInBoxViewController.swift in Sources */,
+				DD239A602539D97E00747BAF /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

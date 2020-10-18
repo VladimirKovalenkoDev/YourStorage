@@ -47,7 +47,9 @@ class WhatInBoxViewController: SwipeTableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
         cell.textLabel?.text = things[indexPath.row].things
+        if things[indexPath.row].photo != nil {
         cell.imageView?.image = UIImage(data: things[indexPath.row].photo!)
+        }
         return cell
     }
    func saveData () {

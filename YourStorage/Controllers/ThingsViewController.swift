@@ -7,28 +7,38 @@
 //
 
 import UIKit
+import CoreData
 
 class ThingsViewController: UIViewController {
 //var palceString = ""
     
+   // @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var thingNameTextField: UITextField!
-    @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var thingLabel: UILabel!
-    
+    let context = C.context
     override func viewDidLoad() {
         super.viewDidLoad()
         thingNameTextField.delegate = self
     }
     
-
-
+    @IBAction func saveButtonPressed(_ sender: UIButton ) {
+        let newThing = InBox(context: context)
+        let thing = thingNameTextField.text ?? "Thing1"
+        newThing.things = thing
+        do {
+            print("thing saved")
+           try  context.save()
+        } catch {
+        print("error saving context: \(error)/ThingsVC")
+        }
+        dismiss(animated: true, completion: nil)
+    }
 }
 // MARK: - TextField Delegate Methods
 extension ThingsViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-       thingNameTextField.endEditing(true)
+        thingNameTextField.endEditing(true)
         thingLabel.text = thingNameTextField.text
-
         return true
     }
 }

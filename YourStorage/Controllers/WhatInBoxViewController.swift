@@ -16,7 +16,7 @@ class WhatInBoxViewController: SwipeTableViewController {
            
         }
     }
-    let context  = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    let context  = C.context
     var things = [InBox]()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +41,7 @@ class WhatInBoxViewController: SwipeTableViewController {
             do {
                try  context.save()
             } catch {
-            print("error saving context: \(error)")
+            print("error saving context: \(error)/WhatInVC")
             }
            
             self.tableView.reloadData()

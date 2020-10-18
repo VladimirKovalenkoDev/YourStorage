@@ -7,9 +7,10 @@
 //
 
 import Foundation
-
+import UIKit
 struct C {
     static let boxToWhatIsSegue = "IntoTheBox"
  //   static let thingDetail = "Thing"
     static let cells = "Cells"
+    static let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 }

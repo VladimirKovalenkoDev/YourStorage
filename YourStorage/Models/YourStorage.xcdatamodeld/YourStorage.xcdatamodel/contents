@@ -5,7 +5,7 @@
         <relationship name="inbox" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="InBox" inverseName="parentCategory" inverseEntity="InBox"/>
     </entity>
     <entity name="InBox" representedClassName="InBox" syncable="YES" codeGenerationType="class">
-        <attribute name="gods" attributeType="String"/>
+        <attribute name="things" attributeType="String"/>
         <relationship name="parentCategory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Boxes" inverseName="inbox" inverseEntity="Boxes"/>
     </entity>
     <elements>

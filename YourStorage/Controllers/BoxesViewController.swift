@@ -13,7 +13,7 @@ class BoxesViewController: SwipeTableViewController {
     
     var boxes = [Boxes]()
     var textField = UITextField()
-    let context  = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    let context  = C.context
     override func viewDidLoad() {
         super.viewDidLoad()
         loadData()
@@ -69,7 +69,7 @@ class BoxesViewController: SwipeTableViewController {
             do {
                boxes =  try context.fetch(request)
             } catch  {
-                print("error fetching data from context:\(error)")
+                print("error fetching data from context:\(error)/BoxesVC")
                 }
             tableView.reloadData()
         }

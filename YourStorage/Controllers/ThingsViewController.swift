@@ -21,12 +21,14 @@ class ThingsViewController: UIViewController {
         thingNameTextField.delegate = self
     }
     
+    
     @IBAction func saveButtonPressed(_ sender: UIButton ) {
         let newThing = InBox(context: context)
         let thing = thingNameTextField.text ?? "Thing1"
         newThing.things = thing
         do {
             print("thing saved")
+            print(newThing.things)
            try  context.save()
         } catch {
         print("error saving context: \(error)/ThingsVC")

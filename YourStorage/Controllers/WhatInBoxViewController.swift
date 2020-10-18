@@ -20,22 +20,33 @@ class WhatInBoxViewController: SwipeTableViewController {
     var things = [InBox]()
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
     override func viewWillAppear(_ animated: Bool) {
         title = selectedBox!.name
+        let fetchRequest = InBox.fetchRequest() as NSFetchRequest<InBox>
+               do{
+                   things = try context.fetch(fetchRequest)
+               } catch let error{
+                   print("THERE IS ERROR IN LOADING DATA \(error)")
+               }
+               tableView.reloadData()
+      
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        
+        return things.count
+    }
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
+        cell.textLabel?.text = things[indexPath.row].things
+        return cell
     }
    func saveData () {
             do {
@@ -68,6 +79,7 @@ class WhatInBoxViewController: SwipeTableViewController {
        let thing = self.things[indexPath.row]
        self.context.delete(thing)
        self.things.remove(at: indexPath.row)
+    print("deleted")
        }
    
 

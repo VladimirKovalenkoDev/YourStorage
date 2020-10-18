@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 class WhatInBoxViewController: SwipeTableViewController {
     
+   
     var selectedBox : Boxes? {
         didSet{
            loadData()
@@ -46,6 +47,7 @@ class WhatInBoxViewController: SwipeTableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
         cell.textLabel?.text = things[indexPath.row].things
+        cell.imageView?.image = UIImage(data: things[indexPath.row].photo!)
         return cell
     }
    func saveData () {

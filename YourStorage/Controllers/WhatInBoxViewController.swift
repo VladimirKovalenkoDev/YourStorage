@@ -8,7 +8,7 @@
 
 import UIKit
 import CoreData
-class WhatInBoxViewController: SwipeTableViewController {
+class WhatInBoxViewController: UITableViewController {
     
    
     var selectedBox : Boxes? {
@@ -21,6 +21,7 @@ class WhatInBoxViewController: SwipeTableViewController {
     var things = [InBox]()
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.rowHeight = 70
     }
     override func viewWillAppear(_ animated: Bool) {
         title = selectedBox!.name
@@ -45,12 +46,22 @@ class WhatInBoxViewController: SwipeTableViewController {
         return things.count
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = super.tableView(tableView, cellForRowAt: indexPath)
-        cell.textLabel?.text = things[indexPath.row].things
+        let cell = tableView.dequeueReusableCell(withIdentifier: C.whatInCell , for: indexPath) as! WhatInCell
+        cell.thingsName.text = things[indexPath.row].things
         if things[indexPath.row].photo != nil {
-        cell.imageView?.image = UIImage(data: things[indexPath.row].photo!)
+            cell.thingsImge.image = UIImage(data: things[indexPath.row].photo!)
         }
         return cell
+    }
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+           return true
+       }
+    // MARK: - Deletion of birthday
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if things.count > indexPath.row{
+            updateModel(at: indexPath)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
     }
    func saveData () {
             do {
@@ -78,8 +89,7 @@ class WhatInBoxViewController: SwipeTableViewController {
               tableView.reloadData()
           }
         // MARK: -  Delete data from swipe
-   override func updateModel(at indexPath: IndexPath) {
-       
+    func updateModel(at indexPath: IndexPath) {
        let thing = self.things[indexPath.row]
        self.context.delete(thing)
        self.things.remove(at: indexPath.row)

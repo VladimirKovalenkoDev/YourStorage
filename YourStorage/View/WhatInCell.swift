@@ -15,6 +15,7 @@ class WhatInCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+       // thingsImge.layer.cornerRadius = thingsImge.frame.height / 50
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

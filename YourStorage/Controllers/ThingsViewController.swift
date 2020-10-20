@@ -11,6 +11,7 @@ import CoreData
 
 class ThingsViewController: UIViewController, UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     
+    @IBOutlet weak var navbar: UINavigationBar!
     @IBOutlet weak var thingImage: UIImageView!
     @IBOutlet weak var thingNameTextField: UITextField!
     @IBOutlet weak var thingLabel: UILabel!
@@ -18,8 +19,12 @@ class ThingsViewController: UIViewController, UIImagePickerControllerDelegate,UI
     override func viewDidLoad() {
         super.viewDidLoad()
         thingNameTextField.delegate = self
+        
     }
     
+    @IBAction func cancelButton(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
+    }
     @IBAction func cameraAccess(_ sender: Any) {
         if UIImagePickerController.isSourceTypeAvailable(.camera){
             let cameraView = UIImagePickerController()
@@ -30,7 +35,7 @@ class ThingsViewController: UIViewController, UIImagePickerControllerDelegate,UI
     }
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let pickedImage = info[UIImagePickerController.InfoKey(rawValue: UIImagePickerController.InfoKey.originalImage.rawValue)] as? UIImage{
-            thingImage.contentMode = .scaleToFill
+            thingImage.contentMode = .scaleAspectFit
             thingImage.image = pickedImage
         }
         dismiss(animated: true, completion: nil)
@@ -38,7 +43,7 @@ class ThingsViewController: UIViewController, UIImagePickerControllerDelegate,UI
     
     @IBAction func saveButtonPressed(_ sender: UIButton ) {
         let newThing = InBox(context: context)
-        let imageData = thingImage.image?.pngData()
+        let imageData = thingImage.image?.pngData()//jpgData??
         let thing = thingNameTextField.text ?? "Thing1"
         newThing.things = thing
         newThing.photo = imageData

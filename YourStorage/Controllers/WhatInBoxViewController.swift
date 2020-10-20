@@ -22,6 +22,7 @@ class WhatInBoxViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.rowHeight = 70
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         title = selectedBox!.name
@@ -34,6 +35,7 @@ class WhatInBoxViewController: UITableViewController {
                tableView.reloadData()
       
     }
+    
 
     // MARK: - Table view data source
 

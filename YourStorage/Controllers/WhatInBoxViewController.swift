@@ -8,38 +8,23 @@
 
 import UIKit
 import CoreData
+import RealmSwift
 class WhatInBoxViewController: UITableViewController {
     
-   var selectedBox = ""
-//    var selectedBox : Boxes? {
-//        didSet{
-//           loadData()
-//
-//        }
-//    }
-    let context  = C.context
-    var things = [InBox]()
+    var selectedBox = ""
+    var things : Results<InBox>?
+    var realmService = RealmService()
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.rowHeight = 70
-        loadData()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
+        loadData()
         title = selectedBox
-             let fetchRequest = InBox.fetchRequest() as NSFetchRequest<InBox>
-                          do{
-                            self.things = try self.context.fetch(fetchRequest)
-                          } catch let error{
-                              print("THERE IS ERROR IN LOADING DATA \(error)")
-                          }
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
-            
-        
     }
     
 
@@ -50,17 +35,16 @@ class WhatInBoxViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return things.count
+        return things?.count ?? 0
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: C.whatInCell , for: indexPath) as! WhatInCell
         DispatchQueue.main.async {
-            if self.things[indexPath.row].photo != nil {
-                cell.thingsImge.image = UIImage(data: self.things[indexPath.row].photo!)
+            if self.things?[indexPath.row].photo != nil {
+                cell.thingsImge.image = UIImage(data: (self.things?[indexPath.row].photo!)!)
             }
         }
-        cell.thingsName.text = things[indexPath.row].things
+        cell.thingsName.text = things?[indexPath.row].things
         
         return cell
     }
@@ -69,51 +53,26 @@ class WhatInBoxViewController: UITableViewController {
        }
     // MARK: - Deletion of birthday
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if things.count > indexPath.row{
+        if things?.count ?? 0 > indexPath.row{
             updateModel(at: indexPath)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
-   func saveData () {
-            do {
-               try  context.save()
-            } catch {
-            print("error saving context: \(error)/WhatInVC")
-            }
-           
-            self.tableView.reloadData()
-       }
-       func loadData(with request:NSFetchRequest<InBox> = InBox.fetchRequest()) {
-               do {
-                  things =  try context.fetch(request)
-               } catch  {
-                   print("error fetching data from context:\(error)/BoxesVC")
-                   }
+    // MARK: - DATA Manipulation
+//   func saveData () {
+//
+//            self.tableView.reloadData()
+//       }
+       func loadData() {
+        let results = self.realmService.loadData(type: InBox.self)
+        things = results
                tableView.reloadData()
            }
-//        func loadData(with request:NSFetchRequest<InBox> = InBox.fetchRequest(), predicate: NSPredicate? = nil) {
-//              let boxPredicate = NSPredicate(format: "parentCategory.name MATCHES %@", selectedBox!.name!)
-//              if let additionalPredicate = predicate {
-//                  request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [boxPredicate,additionalPredicate])
-//              } else {
-//                  request.predicate = boxPredicate
-//              }
-//
-//              do {
-//                 things =  try context.fetch(request)
-//              } catch  {
-//                  print("error fetching data from context:\(error)")
-//              }
-//
-//                self.tableView.reloadData()
-//
-//
-//          }
-        // MARK: -  Delete data from swipe
+
     func updateModel(at indexPath: IndexPath) {
-       let thing = self.things[indexPath.row]
-       self.context.delete(thing)
-       self.things.remove(at: indexPath.row)
+        if let thing = self.things?[indexPath.row] {
+            self.realmService.deleteData(object: thing)
+        }
     print("deleted")
        }
    

@@ -12,11 +12,13 @@
 		DD239A602539D97E00747BAF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD239A5F2539D97E00747BAF /* Constants.swift */; };
 		DD239A67253C82F500747BAF /* ThingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD239A66253C82F500747BAF /* ThingsViewController.swift */; };
 		DD318819253E271B000A9EDA /* WhatInCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD318818253E271B000A9EDA /* WhatInCell.swift */; };
+		DD31881D254078D0000A9EDA /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD31881C254078D0000A9EDA /* RealmService.swift */; };
+		DD31881F25407A0B000A9EDA /* Boxes.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD31881E25407A0B000A9EDA /* Boxes.swift */; };
+		DD31882125407D53000A9EDA /* InBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD31882025407D53000A9EDA /* InBox.swift */; };
 		DD5A01222539C9E6004D86C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5A01212539C9E6004D86C8 /* AppDelegate.swift */; };
 		DD5A01242539C9E6004D86C8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5A01232539C9E6004D86C8 /* SceneDelegate.swift */; };
 		DD5A01262539C9E6004D86C8 /* BoxesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5A01252539C9E6004D86C8 /* BoxesViewController.swift */; };
 		DD5A01292539C9E6004D86C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD5A01272539C9E6004D86C8 /* Main.storyboard */; };
-		DD5A012C2539C9E6004D86C8 /* YourStorage.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DD5A012A2539C9E6004D86C8 /* YourStorage.xcdatamodeld */; };
 		DD5A012E2539C9EC004D86C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD5A012D2539C9EC004D86C8 /* Assets.xcassets */; };
 		DD5A01312539C9EC004D86C8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD5A012F2539C9EC004D86C8 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
@@ -28,12 +30,14 @@
 		DD239A5F2539D97E00747BAF /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		DD239A66253C82F500747BAF /* ThingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThingsViewController.swift; sourceTree = "<group>"; };
 		DD318818253E271B000A9EDA /* WhatInCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatInCell.swift; sourceTree = "<group>"; };
+		DD31881C254078D0000A9EDA /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
+		DD31881E25407A0B000A9EDA /* Boxes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Boxes.swift; sourceTree = "<group>"; };
+		DD31882025407D53000A9EDA /* InBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InBox.swift; sourceTree = "<group>"; };
 		DD5A011E2539C9E6004D86C8 /* YourStorage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YourStorage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD5A01212539C9E6004D86C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DD5A01232539C9E6004D86C8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		DD5A01252539C9E6004D86C8 /* BoxesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxesViewController.swift; sourceTree = "<group>"; };
 		DD5A01282539C9E6004D86C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		DD5A012B2539C9E6004D86C8 /* YourStorage.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = YourStorage.xcdatamodel; sourceTree = "<group>"; };
 		DD5A012D2539C9EC004D86C8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DD5A01302539C9EC004D86C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DD5A01322539C9EC004D86C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -133,7 +137,9 @@
 			isa = PBXGroup;
 			children = (
 				DD239A652539E1CA00747BAF /* Core */,
-				DD5A012A2539C9E6004D86C8 /* YourStorage.xcdatamodeld */,
+				DD31881C254078D0000A9EDA /* RealmService.swift */,
+				DD31881E25407A0B000A9EDA /* Boxes.swift */,
+				DD31882025407D53000A9EDA /* InBox.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -253,10 +259,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DD5A012C2539C9E6004D86C8 /* YourStorage.xcdatamodeld in Sources */,
+				DD31881F25407A0B000A9EDA /* Boxes.swift in Sources */,
 				DD239A67253C82F500747BAF /* ThingsViewController.swift in Sources */,
 				DD5A01262539C9E6004D86C8 /* BoxesViewController.swift in Sources */,
 				DD5A01222539C9E6004D86C8 /* AppDelegate.swift in Sources */,
+				DD31882125407D53000A9EDA /* InBox.swift in Sources */,
+				DD31881D254078D0000A9EDA /* RealmService.swift in Sources */,
 				DD5A01242539C9E6004D86C8 /* SceneDelegate.swift in Sources */,
 				DD239A5E2539D5B000747BAF /* WhatInBoxViewController.swift in Sources */,
 				DD239A602539D97E00747BAF /* Constants.swift in Sources */,
@@ -460,19 +468,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		DD5A012A2539C9E6004D86C8 /* YourStorage.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				DD5A012B2539C9E6004D86C8 /* YourStorage.xcdatamodel */,
-			);
-			currentVersion = DD5A012B2539C9E6004D86C8 /* YourStorage.xcdatamodel */;
-			path = YourStorage.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = DD5A01162539C9E6004D86C8 /* Project object */;
 }

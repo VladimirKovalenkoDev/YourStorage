@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import RealmSwift
 
 class ThingsViewController: UIViewController, UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     
@@ -15,7 +16,7 @@ class ThingsViewController: UIViewController, UIImagePickerControllerDelegate,UI
     @IBOutlet weak var thingImage: UIImageView!
     @IBOutlet weak var thingNameTextField: UITextField!
     @IBOutlet weak var thingLabel: UILabel!
-    let context = C.context
+    var realmService = RealmService ()
     override func viewDidLoad() {
         super.viewDidLoad()
         thingNameTextField.delegate = self
@@ -40,18 +41,13 @@ class ThingsViewController: UIViewController, UIImagePickerControllerDelegate,UI
     }
     
     @IBAction func saveButtonPressed(_ sender: UIButton ) {
-        let newThing = InBox(context: context)
-        let imageData = thingImage.image?.pngData()//jpgData??
+        let newThing = InBox()
+       //jpgData??
         let thing = thingNameTextField.text ?? "Thing1"
         newThing.things = thing
-        newThing.photo = imageData
+        newThing.photo = thingImage.image?.pngData()
+         self.realmService.saveData(object: newThing)
         DispatchQueue.main.async {
-               do {
-                     print("thing saved")
-                try  self.context.save()
-                 } catch {
-                 print("error saving context: \(error)/ThingsVC")
-                 }
             self.dismiss(animated: true, completion: nil)
         }
      

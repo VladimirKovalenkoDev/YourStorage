@@ -8,12 +8,14 @@
 
 import UIKit
 import CoreData
+import RealmSwift
 
 class BoxesViewController: UITableViewController {
     
-    var boxes = [Boxes]()
+    
+    var boxes : Results<Boxes>?
     var textField = UITextField()
-    let context  = C.context
+    var realmService = RealmService ()
     override func viewDidLoad() {
         super.viewDidLoad()
         loadData()
@@ -22,10 +24,9 @@ class BoxesViewController: UITableViewController {
     @IBAction func addBox(_ sender: UIBarButtonItem) {
                let alert = UIAlertController(title: "add new box", message: "", preferredStyle: .alert)
                let action = UIAlertAction(title: "Add Category", style: .default) { ( action) in
-                let newBox = Boxes(context: self.context)
+                let newBox = Boxes()
                 newBox.name = self.textField.text!
-                self.boxes.append(newBox)
-                self.saveData()
+                self.saveData(box: newBox)
                }
                let cancel = UIAlertAction(title: "Cancel", style: .cancel)
                alert.addTextField { (field) in
@@ -38,19 +39,19 @@ class BoxesViewController: UITableViewController {
     }
     // MARK: - TableView Manipulations
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return boxes.count
+        return boxes?.count ?? 0
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: C.cells , for: indexPath)
-        let box = boxes[indexPath.row]
-        cell.textLabel?.text = box.name
+        let box = boxes?[indexPath.row]
+        cell.textLabel?.text = box?.name
            return cell
     }
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
            return true
        }
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if boxes.count > indexPath.row{
+        if boxes?.count ?? 0 > indexPath.row{
             updateModel(at: indexPath)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
@@ -61,35 +62,25 @@ class BoxesViewController: UITableViewController {
             let destinationVC = segue.destination as! WhatInBoxViewController
         
             if let indexPath = tableView.indexPathForSelectedRow {
-                destinationVC.selectedBox = boxes[indexPath.row].name!
+                destinationVC.selectedBox = boxes?[indexPath.row].name ?? "NAME"
             }
         
     }
-   // MARK: - Coredata Manipulations
-    func saveData () {
-             do {
-                try  context.save()
-             } catch {
-             print("error saving context: \(error)")
-             }
-            
-             self.tableView.reloadData()
+   // MARK: - DATA Manipulations
+    func saveData (box: Boxes) {
+        self.realmService.saveData(object: box)
+        tableView.reloadData()
         }
         
-        func loadData(with request:NSFetchRequest<Boxes> = Boxes.fetchRequest()) {
-            do {
-               boxes =  try context.fetch(request)
-            } catch  {
-                print("error fetching data from context:\(error)/BoxesVC")
-                }
-            tableView.reloadData()
+        func loadData() {
+            let results = self.realmService.loadData(type: Boxes.self)
+            boxes = results
+                   tableView.reloadData()
         }
-         // MARK: -  Delete data from swipe
       func updateModel(at indexPath: IndexPath) {
-        
-        let box = self.boxes[indexPath.row]
-        self.context.delete(box)
-        self.boxes.remove(at: indexPath.row)
+        if let thing = self.boxes?[indexPath.row] {
+            self.realmService.deleteData(object: thing)
+        }
         }
     
 }

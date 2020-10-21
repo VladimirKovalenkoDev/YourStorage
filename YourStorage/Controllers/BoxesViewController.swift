@@ -19,6 +19,8 @@ class BoxesViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         loadData()
+     //let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+    //    print(path)
     }
 
     @IBAction func addBox(_ sender: UIBarButtonItem) {
@@ -56,13 +58,15 @@ class BoxesViewController: UITableViewController {
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
-
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: C.boxToWhatIsSegue, sender: self)
+       }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
        
             let destinationVC = segue.destination as! WhatInBoxViewController
         
             if let indexPath = tableView.indexPathForSelectedRow {
-                destinationVC.selectedBox = boxes?[indexPath.row].name ?? "NAME"
+                destinationVC.selectedBox = boxes?[indexPath.row]
             }
         
     }

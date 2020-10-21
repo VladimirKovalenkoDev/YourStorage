@@ -50,48 +50,9 @@ public final class RealmService {
     }
 
     public func getResults<T: Object>(_ type: T.Type) -> Results<T>? {
-//        var predicate: NSPredicate?
-//        var conditionStr = ""
-//        var arguments = [Any]()
-//        if conditions.count > 0 {
-//            for c in conditions {
-//                conditionStr.append(conditionStr.isEmpty ? "" : " AND ")
-//                switch c.condition {
-//                case .equals:
-//                    conditionStr.append("\(c.field) = %@")
-//                    arguments.append(c.value)
-//                case .greater:
-//                    conditionStr.append("\(c.field) > %@")
-//                    arguments.append(c.value)
-//                case .greaterOrEqual:
-//                    conditionStr.append("\(c.field) >= %@")
-//                    arguments.append(c.value)
-//                case .less:
-//                    conditionStr.append("\(c.field) < %@")
-//                    arguments.append(c.value)
-//                case .lessOrEqual:
-//                    conditionStr.append("\(c.field) <= %@")
-//                    arguments.append(c.value)
-//                case .inList:
-//                    if let arVal = c.value as? [String] {
-//                        conditionStr.append("\(c.field) IN %@")
-//                        arguments.append(arVal)
-//                    }
-//                }
-//            }
-//            predicate = NSPredicate(format: conditionStr, argumentArray: arguments)
-//        }
-
         do {
             let realm = try Realm()
             var items = realm.objects(type)
-
-//            if let predicate = predicate {
-//                items = items.filter(predicate)
-//            }
-//            if let sorted = sorted {
-//                items = items.sorted(by: sorted)
-//            }
             return items
         } catch {
             print("error in getResults method")

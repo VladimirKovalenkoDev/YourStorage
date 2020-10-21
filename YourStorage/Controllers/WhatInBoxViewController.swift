@@ -7,11 +7,14 @@
 //
 
 import UIKit
-import CoreData
 import RealmSwift
 class WhatInBoxViewController: UITableViewController {
     
-    var selectedBox = ""
+    var selectedBox: Boxes? {
+        didSet {
+            loadItems()
+        }
+    }
     var things : Results<InBox>?
     var realmService = RealmService()
     override func viewDidLoad() {
@@ -20,8 +23,8 @@ class WhatInBoxViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        loadData()
-        title = selectedBox
+        loadItems()
+        title = selectedBox!.name
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
@@ -68,6 +71,10 @@ class WhatInBoxViewController: UITableViewController {
         things = results
                tableView.reloadData()
            }
+   func  loadItems(){
+    things = selectedBox?.inBox.sorted(byKeyPath: "things", ascending: true)
+        tableView.reloadData()
+    }
 
     func updateModel(at indexPath: IndexPath) {
         if let thing = self.things?[indexPath.row] {

@@ -117,9 +117,9 @@
 		DD5A01392539CA7E004D86C8 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				DD239A66253C82F500747BAF /* ThingsViewController.swift */,
 				DD5A01252539C9E6004D86C8 /* BoxesViewController.swift */,
 				DD239A5D2539D5B000747BAF /* WhatInBoxViewController.swift */,
+				DD239A66253C82F500747BAF /* ThingsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";

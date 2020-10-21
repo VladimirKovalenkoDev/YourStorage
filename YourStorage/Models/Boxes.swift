@@ -10,4 +10,5 @@ import Foundation
 import RealmSwift
 class Boxes: Object {
     @objc dynamic var name : String = ""
+    let inBox = List<InBox>()
 }

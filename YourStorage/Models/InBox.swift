@@ -11,4 +11,5 @@ import RealmSwift
 class InBox: Object {
     @objc dynamic var things : String? = ""
     @objc dynamic var photo : Data? = nil
+    let parentCategory = LinkingObjects(fromType: Boxes.self, property: "inBox")
 }

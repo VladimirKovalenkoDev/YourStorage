@@ -47,6 +47,7 @@ class ThingsViewController: UIViewController, UIImagePickerControllerDelegate,UI
         newThing.things = thing
         newThing.photo = thingImage.image?.pngData()
          self.realmService.saveData(object: newThing)
+        print("saved")
         DispatchQueue.main.async {
             self.dismiss(animated: true, completion: nil)
         }

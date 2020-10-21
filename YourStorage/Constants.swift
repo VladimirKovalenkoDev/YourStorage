@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 struct C {
-    static let boxToWhatIsSegue = "IntoTheBox"
+    static let boxToWhatIsSegue = "intoTheBox"
  //   static let thingDetail = "Thing"
     static let cells = "Cells"
     static let whatInCell = "WhatinCell"

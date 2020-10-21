@@ -19,9 +19,7 @@ class ThingsViewController: UIViewController, UIImagePickerControllerDelegate,UI
     override func viewDidLoad() {
         super.viewDidLoad()
         thingNameTextField.delegate = self
-        
     }
-    
     @IBAction func cancelButton(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
@@ -47,13 +45,16 @@ class ThingsViewController: UIViewController, UIImagePickerControllerDelegate,UI
         let thing = thingNameTextField.text ?? "Thing1"
         newThing.things = thing
         newThing.photo = imageData
-        do {
-            print("thing saved")
-           try  context.save()
-        } catch {
-        print("error saving context: \(error)/ThingsVC")
+        DispatchQueue.main.async {
+               do {
+                     print("thing saved")
+                try  self.context.save()
+                 } catch {
+                 print("error saving context: \(error)/ThingsVC")
+                 }
+            self.dismiss(animated: true, completion: nil)
         }
-        dismiss(animated: true, completion: nil)
+     
     }
 }
 // MARK: - TextField Delegate Methods

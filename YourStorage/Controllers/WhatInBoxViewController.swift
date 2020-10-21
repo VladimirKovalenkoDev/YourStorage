@@ -10,13 +10,13 @@ import UIKit
 import CoreData
 class WhatInBoxViewController: UITableViewController {
     
-   
-    var selectedBox : Boxes? {
-        didSet{
-           loadData()
-           
-        }
-    }
+   var selectedBox = ""
+//    var selectedBox : Boxes? {
+//        didSet{
+//           loadData()
+//
+//        }
+//    }
     let context  = C.context
     var things = [InBox]()
     override func viewDidLoad() {
@@ -24,16 +24,21 @@ class WhatInBoxViewController: UITableViewController {
         tableView.rowHeight = 70
         
     }
+    
     override func viewWillAppear(_ animated: Bool) {
-        title = selectedBox!.name
-        let fetchRequest = InBox.fetchRequest() as NSFetchRequest<InBox>
-               do{
-                   things = try context.fetch(fetchRequest)
-               } catch let error{
-                   print("THERE IS ERROR IN LOADING DATA \(error)")
-               }
-               tableView.reloadData()
-      
+        
+        title = selectedBox
+             let fetchRequest = InBox.fetchRequest() as NSFetchRequest<InBox>
+                          do{
+                            self.things = try self.context.fetch(fetchRequest)
+                          } catch let error{
+                              print("THERE IS ERROR IN LOADING DATA \(error)")
+                          }
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+            
+        
     }
     
 
@@ -49,10 +54,13 @@ class WhatInBoxViewController: UITableViewController {
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: C.whatInCell , for: indexPath) as! WhatInCell
-        cell.thingsName.text = things[indexPath.row].things
-        if things[indexPath.row].photo != nil {
-            cell.thingsImge.image = UIImage(data: things[indexPath.row].photo!)
+        DispatchQueue.main.async {
+            if self.things[indexPath.row].photo != nil {
+                cell.thingsImge.image = UIImage(data: self.things[indexPath.row].photo!)
+            }
         }
+        cell.thingsName.text = things[indexPath.row].things
+        
         return cell
     }
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -75,21 +83,24 @@ class WhatInBoxViewController: UITableViewController {
             self.tableView.reloadData()
        }
        
-        func loadData(with request:NSFetchRequest<InBox> = InBox.fetchRequest(), predicate: NSPredicate? = nil) {
-              let boxPredicate = NSPredicate(format: "parentCategory.name MATCHES %@", selectedBox!.name!)
-              if let additionalPredicate = predicate {
-                  request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [boxPredicate,additionalPredicate])
-              } else {
-                  request.predicate = boxPredicate
-              }
-             
-              do {
-                 things =  try context.fetch(request)
-              } catch  {
-                  print("error fetching data from context:\(error)")
-              }
-              tableView.reloadData()
-          }
+//        func loadData(with request:NSFetchRequest<InBox> = InBox.fetchRequest(), predicate: NSPredicate? = nil) {
+//              let boxPredicate = NSPredicate(format: "parentCategory.name MATCHES %@", selectedBox!.name!)
+//              if let additionalPredicate = predicate {
+//                  request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [boxPredicate,additionalPredicate])
+//              } else {
+//                  request.predicate = boxPredicate
+//              }
+//
+//              do {
+//                 things =  try context.fetch(request)
+//              } catch  {
+//                  print("error fetching data from context:\(error)")
+//              }
+//
+//                self.tableView.reloadData()
+//
+//
+//          }
         // MARK: -  Delete data from swipe
     func updateModel(at indexPath: IndexPath) {
        let thing = self.things[indexPath.row]

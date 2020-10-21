@@ -46,13 +46,15 @@ class BoxesViewController: SwipeTableViewController {
         cell.textLabel?.text = box.name
            return cell
     }
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == C.boxToWhatIsSegue {
+       
             let destinationVC = segue.destination as! WhatInBoxViewController
+        
             if let indexPath = tableView.indexPathForSelectedRow {
-                destinationVC.selectedBox = boxes[indexPath.row]
+                destinationVC.selectedBox = boxes[indexPath.row].name!
             }
-        }
+        
     }
    // MARK: - Coredata Manipulations
     func saveData () {

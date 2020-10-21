@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class BoxesViewController: SwipeTableViewController {
+class BoxesViewController: UITableViewController {
     
     var boxes = [Boxes]()
     var textField = UITextField()
@@ -41,10 +41,19 @@ class BoxesViewController: SwipeTableViewController {
         return boxes.count
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = super.tableView(tableView, cellForRowAt: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: C.cells , for: indexPath)
         let box = boxes[indexPath.row]
         cell.textLabel?.text = box.name
            return cell
+    }
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+           return true
+       }
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if boxes.count > indexPath.row{
+            updateModel(at: indexPath)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -76,7 +85,7 @@ class BoxesViewController: SwipeTableViewController {
             tableView.reloadData()
         }
          // MARK: -  Delete data from swipe
-    override func updateModel(at indexPath: IndexPath) {
+      func updateModel(at indexPath: IndexPath) {
         
         let box = self.boxes[indexPath.row]
         self.context.delete(box)

@@ -22,6 +22,7 @@ class WhatInBoxViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.rowHeight = 70
+        loadData()
         
     }
     
@@ -82,7 +83,14 @@ class WhatInBoxViewController: UITableViewController {
            
             self.tableView.reloadData()
        }
-       
+       func loadData(with request:NSFetchRequest<InBox> = InBox.fetchRequest()) {
+               do {
+                  things =  try context.fetch(request)
+               } catch  {
+                   print("error fetching data from context:\(error)/BoxesVC")
+                   }
+               tableView.reloadData()
+           }
 //        func loadData(with request:NSFetchRequest<InBox> = InBox.fetchRequest(), predicate: NSPredicate? = nil) {
 //              let boxPredicate = NSPredicate(format: "parentCategory.name MATCHES %@", selectedBox!.name!)
 //              if let additionalPredicate = predicate {

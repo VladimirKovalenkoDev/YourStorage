@@ -16,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cells" id="qJZ-Vg-VJ1" customClass="SwipeTableViewCell" customModule="SwipeCellKit">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cells" id="qJZ-Vg-VJ1">
                                 <rect key="frame" x="0.0" y="28" width="414" height="43.666667938232422"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qJZ-Vg-VJ1" id="wZs-Cu-axH" customClass="SwipeTableViewCell" customModule="SwipeCellKit">
@@ -24,7 +24,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="Ylx-uI-YK2" kind="show" identifier="IntoTheBox" id="esG-5X-faP"/>
+                                    <segue destination="Ylx-uI-YK2" kind="show" identifier="IntoTheBox" id="SzU-Mh-MOO"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -90,7 +90,7 @@
                     <navigationItem key="navigationItem" title="What In Box" id="MJu-r8-QUW">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Msq-ge-jp0">
                             <connections>
-                                <segue destination="GPZ-kW-WB0" kind="presentation" modalPresentationStyle="fullScreen" id="WxL-n8-49Z"/>
+                                <segue destination="GPZ-kW-WB0" kind="presentation" modalPresentationStyle="fullScreen" id="PRV-FD-8Ub"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

@@ -10,6 +10,7 @@ import Foundation
 import RealmSwift
 class InBox: Object {
     @objc dynamic var things : String? = ""
-    @objc dynamic var photo : Data? = nil
-    let parentCategory = LinkingObjects(fromType: Boxes.self, property: "inBox")
+    @objc dynamic var photos : Data? = nil
+    var parentCategory = LinkingObjects(fromType: Boxes.self, property: "inBox")
+//    let child = List<Thing>()
 }

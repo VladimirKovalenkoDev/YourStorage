@@ -90,7 +90,7 @@
                     <navigationItem key="navigationItem" title="What In Box" id="MJu-r8-QUW">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Msq-ge-jp0">
                             <connections>
-                                <segue destination="GPZ-kW-WB0" kind="presentation" modalPresentationStyle="fullScreen" id="PRV-FD-8Ub"/>
+                                <action selector="add:" destination="Ylx-uI-YK2" id="kvJ-fu-AJz"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

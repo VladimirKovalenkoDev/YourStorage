@@ -15,6 +15,7 @@ class WhatInBoxViewController: UITableViewController {
             loadItems()
         }
     }
+    let realm = try! Realm()
     var things : Results<InBox>?
     var realmService = RealmService()
     override func viewDidLoad() {
@@ -23,14 +24,42 @@ class WhatInBoxViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        loadItems()
+        //loadData()
         title = selectedBox!.name
+        
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
     }
     
-
+    @IBAction func add(_ sender: UIBarButtonItem) {
+         var textField = UITextField()
+        let alert = UIAlertController(title: "add new box", message: "", preferredStyle: .alert)
+        let action = UIAlertAction(title: "Add Category", style: .default) { ( action) in
+            if let currentCategory = self.selectedBox{
+                do {
+                        try self.realm.write {
+                        let newBox = InBox()
+                        newBox.things = textField.text!
+                        currentCategory.inBox.append(newBox)
+                                   }
+                               } catch {
+                                   print("Error saving new items, \(error)")
+                               }
+            }
+        
+            self.tableView.reloadData()
+        }
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+        alert.addTextField { (field) in
+            field.placeholder = "Add box"
+            textField = field
+        }
+        alert.addAction(action)
+        alert.addAction(cancel)
+        present(alert, animated: true, completion: nil)
+    }
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -43,10 +72,10 @@ class WhatInBoxViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: C.whatInCell , for: indexPath) as! WhatInCell
         DispatchQueue.main.async {
-            if self.things?[indexPath.row].photo != nil {
-                cell.thingsImge.image = UIImage(data: (self.things?[indexPath.row].photo!)!)
-            }
-        }
+//            if self.things?[indexPath.row].photos != nil {
+//                cell.thingsImge.image = UIImage(data: (self.things?[indexPath.row].photos!)!)
+//            }
+       }
         cell.thingsName.text = things?[indexPath.row].things
         
         return cell
@@ -62,12 +91,10 @@ class WhatInBoxViewController: UITableViewController {
         }
     }
     // MARK: - DATA Manipulation
-//   func saveData () {
-//
-//            self.tableView.reloadData()
-//       }
        func loadData() {
-        let results = self.realmService.loadData(type: InBox.self)
+        
+       // let results = self.realmService.loadData(type: InBox.self)
+        let results = self.realmService.getResults(InBox.self)
         things = results
                tableView.reloadData()
            }

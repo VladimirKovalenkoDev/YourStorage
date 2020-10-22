@@ -17,9 +17,16 @@ class ThingsViewController: UIViewController, UIImagePickerControllerDelegate,UI
     @IBOutlet weak var thingNameTextField: UITextField!
     @IBOutlet weak var thingLabel: UILabel!
     var realmService = RealmService ()
+  
+//    var item: InBox? {
+//        didSet {
+//            loadItems()
+//        }
+//    }
     override func viewDidLoad() {
         super.viewDidLoad()
         thingNameTextField.delegate = self
+        
     }
     @IBAction func cancelButton(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
@@ -39,13 +46,17 @@ class ThingsViewController: UIViewController, UIImagePickerControllerDelegate,UI
         }
         dismiss(animated: true, completion: nil)
     }
+//    func  loadItems(){
+//        thing = item?.child.sorted(byKeyPath: "thing", ascending: true)
+//        //tableView.reloadData()
+//    }
     
     @IBAction func saveButtonPressed(_ sender: UIButton ) {
         let newThing = InBox()
        //jpgData??
         let thing = thingNameTextField.text ?? "Thing1"
         newThing.things = thing
-        newThing.photo = thingImage.image?.pngData()
+        newThing.photos = thingImage.image?.pngData()
          self.realmService.saveData(object: newThing)
         print("saved")
         DispatchQueue.main.async {
@@ -54,6 +65,7 @@ class ThingsViewController: UIViewController, UIImagePickerControllerDelegate,UI
      
     }
 }
+
 // MARK: - TextField Delegate Methods
 extension ThingsViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
